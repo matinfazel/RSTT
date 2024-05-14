@@ -19,14 +19,14 @@ if __name__ == "__main__":
 
     # Separate datasets
     data_path = os.path.join(path, 'sequences')
-    for mode in ['train', 'fast_test', 'medium_test', 'slow_test']:
+    for mode in ['train', 'test']:
         print('Separate {} dataset'.format(mode))
         save_path = os.path.join(data_path, mode)
         txt_file = os.path.join(path, 'sep_{}list.txt'.format(mode))
         sep_vimeo(data_path, save_path, txt_file)
 
     # Genereate LR images
-    for mode in ['train', 'fast_test', 'medium_test', 'slow_test']:
+    for mode in ['train', 'test']:
         print('Generate low resolution images for {} dataset'.format(mode))
         data_path = os.path.join(path, 'sequences', mode)
         save_path = os.path.join(path, 'sequences_LR')
@@ -38,6 +38,7 @@ if __name__ == "__main__":
 
         print("Generating LR images ...")
         for dirpath in dirpaths:
+           
             output_path = os.path.join(save_path, '/'.join(dirpath.split('/')[-3:]))
             if not os.path.exists(output_path):
                 os.makedirs(output_path)

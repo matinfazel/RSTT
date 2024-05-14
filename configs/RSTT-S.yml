@@ -11,7 +11,7 @@ dataset:
   random_reverse: true #false
   dataroot_HR: /content/RSTT/Train/vimeo_HR.lmdb
   dataroot_LR: /content/RSTT/Train/vimeo_LR.lmdb
-  cache_keys: /content/RSTT/Train/Vimeo_keys.pkl
+  cache_keys: /content/RSTT/Train/Vimeo_keys.pkl 
 
   num_frames: 7
   use_shuffle: true

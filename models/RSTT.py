@@ -47,7 +47,7 @@ class RSTT(nn.Module):
         self.embed_dim = embed_dim
         self.patch_norm = patch_norm
         self.num_in_frames = num_frames
-        self.num_out_frames = num_frames
+        self.num_out_frames = self.num_in_frames
 
         self.pos_drop = nn.Dropout(p=drop_rate)
 
@@ -140,12 +140,14 @@ class RSTT(nn.Module):
 
         _, _, C, h, w = x.size()
         # TODO: Use interpolation for queries
-        y = torch.zeros((B, self.num_out_frames, C, h, w), device=x.device)
-        for i in range(self.num_out_frames):
-            if i % 2 == 0:
-                y[:, i, :, :, :] = x[:, i//2]
-            else:
-                y[:, i, :, :, :] = (x[:, i//2] + x[:, i//2 + 1]) / 2
+        
+        y = x#torch.zeros((B, self.num_out_frames, C, h, w), device=x.device)
+        print("***** *****",x.shape,y.shape)
+        # for i in range(self.num_out_frames):
+        #     if i % 2 == 0:
+        #         y[:, i, :, :, :] = x[:, i//2]
+        #     else:
+        #         y[:, i, :, :, :] = (x[:, i//2] + x[:, i//2 + 1]) / 2
 
         for i_layer in range(self.num_dec_layers):
             y = self.decoder_layers[i_layer](y, encoder_features[-i_layer - 1])

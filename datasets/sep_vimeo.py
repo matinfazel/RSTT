@@ -20,6 +20,7 @@ def sep_vimeo(data_path, save_path, text_path):
     if not os.path.isdir(save_path):
         os.mkdir(save_path)
 
+    
     for l in lines:
         line = l.replace('\n','')
         src_dir = os.path.join(data_path, line)

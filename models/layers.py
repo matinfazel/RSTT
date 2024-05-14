@@ -365,7 +365,7 @@ class VSTSRDecoderTransformerBlock(nn.Module):
         self.dim = dim
         self.num_heads = num_heads
         self.num_frames = num_frames
-        self.num_out_frames = 2 * num_frames - 1
+        self.num_out_frames = num_frames 
         self.window_size = window_size
         self.shift_size = shift_size
         self.mlp_ratio = mlp_ratio
