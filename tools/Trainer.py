@@ -76,7 +76,7 @@ class Trainer():
 
         # set psnr 
         out = self.outputs.cpu().squeeze().clamp(0, 1).detach().numpy() 
-        targetin = (self.self.targets[:,0::2]).cpu().squeeze().clamp(0, 1).detach().numpy() 
+        targetin = (self.targets[:,0::2]).cpu().squeeze().clamp(0, 1).detach().numpy() 
         psnr = peak_signal_noise_ratio(out, targetin)
         # set log
         self.log_dict['loss'] = loss.item()
