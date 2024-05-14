@@ -49,11 +49,9 @@ def create_lmdb(data_path, text_path, save_path):
     txn = env.begin(write=True)  # txn is a Transaction object
 
     # Write data to lmdb
-    pbar = ProgressBar(len(imgs))
 
     i = 0
     for path, key in zip(imgs, keys):
-        pbar.update('Write {}'.format(key))
         img = cv2.imread(path, cv2.IMREAD_UNCHANGED)
         key_byte = key.encode('ascii')
         H, W, C = img.shape  # fixed shape

@@ -20,10 +20,8 @@ def sep_vimeo(data_path, save_path, text_path):
     if not os.path.isdir(save_path):
         os.mkdir(save_path)
 
-    pbar = ProgressBar(len(lines))
     for l in lines:
         line = l.replace('\n','')
-        pbar.update('Copy {}'.format('/'.join(line.split('/')[-2:])))
         src_dir = os.path.join(data_path, line)
         dst_dir = os.path.join(save_path, line)
         shutil.copytree(src_dir, dst_dir)

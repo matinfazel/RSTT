@@ -37,9 +37,7 @@ if __name__ == "__main__":
                 dirpaths.append(dirpath)
 
         print("Generating LR images ...")
-        pbar = ProgressBar(len(dirpaths))
         for dirpath in dirpaths:
-            pbar.update('Generate {}'.format('/'.join(dirpath.split('/')[-2:])))
             output_path = os.path.join(save_path, '/'.join(dirpath.split('/')[-3:]))
             if not os.path.exists(output_path):
                 os.makedirs(output_path)
