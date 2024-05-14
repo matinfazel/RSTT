@@ -70,7 +70,7 @@ class Trainer():
 
         self.optimizer.zero_grad()
         self.outputs = self.model(self.inputs)
-        loss = self.criterion(self.outputs, self.targets)
+        loss = self.criterion(self.outputs, self.targets[:,0::2])#Removing Synthesized frames
         loss.backward()
         self.optimizer.step()
 

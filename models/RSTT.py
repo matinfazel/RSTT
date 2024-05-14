@@ -47,7 +47,7 @@ class RSTT(nn.Module):
         self.embed_dim = embed_dim
         self.patch_norm = patch_norm
         self.num_in_frames = num_frames
-        self.num_out_frames = 2 * num_frames - 1
+        self.num_out_frames = num_frames
 
         self.pos_drop = nn.Dropout(p=drop_rate)
 
@@ -122,7 +122,7 @@ class RSTT(nn.Module):
     def forward(self, x):
         B, D, C, H, W = x.size()  # D input video frames
         x = x.permute(0, 2, 1, 3, 4)
-        upsample_x = F.interpolate(x, (2*D-1, H*4, W*4), mode='trilinear', align_corners=False)
+        upsample_x = F.interpolate(x, (D, H*4, W*4), mode='trilinear', align_corners=False)
         x = x.permute(0, 2, 1, 3, 4)
 
         x = self.input_proj(x) # B, D, C, H, W
