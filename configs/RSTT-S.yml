@@ -9,9 +9,9 @@ gpu_ids: [0]
 dataset:
   name: Vimeo90k_septuplet
   random_reverse: true #false
-  dataroot_HR: ./datasets/vimeo_septuplet/vimeo_HR.lmdb
-  dataroot_LR: ./datasets/vimeo_septuplet/vimeo_LR.lmdb
-  cache_keys: ./datasets/vimeo_septuplet/Vimeo_keys.pkl 
+  dataroot_HR: /content/RSTT/Train/vimeo_HR.lmdb
+  dataroot_LR: /content/RSTT/Train/vimeo_LR.lmdb
+  cache_keys: /content/RSTT/Train/Vimeo_keys.pkl
 
   num_frames: 7
   use_shuffle: true
@@ -24,9 +24,9 @@ dataset:
 
 # Network structures
 network:
-  embed_dim: 96
-  depths: [4, 4, 4, 4, 4, 4, 4, 4]
-  num_heads: [2, 4, 8, 16, 16, 8, 4, 2] 
+  embed_dim: 32
+  depths: [1, 1, 1, 1, 1, 1, 1, 1]
+  num_heads: [1, 1, 1, 1, 1, 1, 1, 1] 
   window_sizes: [[4,4], [4,4], [4,4], [4,4], [4,4], [4,4], [4,4], [4,4]]
   back_RBs: 0
 
