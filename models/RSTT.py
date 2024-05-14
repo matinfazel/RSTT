@@ -142,7 +142,7 @@ class RSTT(nn.Module):
         # TODO: Use interpolation for queries
         
         y = x#torch.zeros((B, self.num_out_frames, C, h, w), device=x.device)
-        print("***** *****",x.shape,y.shape)
+        
         # for i in range(self.num_out_frames):
         #     if i % 2 == 0:
         #         y[:, i, :, :, :] = x[:, i//2]

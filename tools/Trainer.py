@@ -1,6 +1,6 @@
 import logging
 from collections import OrderedDict
-
+from skimage.metrics import peak_signal_noise_ratio
 import os
 import torch
 import torch.nn as nn
@@ -74,9 +74,13 @@ class Trainer():
         loss.backward()
         self.optimizer.step()
 
+        # set psnr 
+        out = self.outputs.cpu().squeeze().clamp(0, 1).detach().numpy() 
+        targetin = (self.self.targets[:,0::2]).cpu().squeeze().clamp(0, 1).detach().numpy() 
+        psnr = peak_signal_noise_ratio(out, targetin)
         # set log
         self.log_dict['loss'] = loss.item()
-
+        self.log_dict['psnr'] = psnr
         # update learning rate
         self.update_learning_rate(step, warmup_iter=self.config['train']['warmup_iter'])
 
